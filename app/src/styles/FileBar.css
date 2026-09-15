@@ -1,0 +1,141 @@
+.filebar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+  background-color: var(--brand-white);
+  border-bottom: 1px solid var(--brand-medium-gray);
+  font-size: 13px;
+}
+
+.filebar-file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1 1 220px;
+}
+
+.filebar-icon {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.filebar-name {
+  font-family: 'Courier New', monospace;
+  color: var(--brand-navy);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.filebar-name.filebar-none {
+  font-family: inherit;
+  font-weight: 400;
+  color: var(--brand-dark-gray);
+  opacity: 0.75;
+}
+
+/* Punkt fuer ungesicherte Aenderungen */
+.filebar-dirty {
+  color: #F57C00;
+  font-size: 22px;
+  line-height: 0;
+  flex-shrink: 0;
+}
+
+.filebar-status {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.filebar-status-ok {
+  background-color: #E5F9E5;
+  color: #1B5E20;
+}
+
+.filebar-status-error {
+  background-color: #FFE5E5;
+  color: #C62828;
+}
+
+.filebar-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.filebar-btn {
+  padding: 7px 14px;
+  background-color: var(--brand-light-gray);
+  color: var(--brand-navy);
+  border: 1px solid var(--brand-medium-gray);
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.filebar-btn:hover:not(:disabled) {
+  background-color: var(--brand-blue-lightest);
+  border-color: var(--brand-blue);
+  color: var(--brand-blue);
+}
+
+.filebar-btn:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+.filebar-btn-primary {
+  background-color: var(--brand-blue);
+  border-color: var(--brand-blue);
+  color: var(--brand-white);
+  font-weight: 600;
+}
+
+.filebar-btn-primary:hover:not(:disabled) {
+  background-color: var(--brand-navy);
+  border-color: var(--brand-navy);
+  color: var(--brand-white);
+}
+
+.filebar-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.filebar-hint {
+  flex-basis: 100%;
+  font-size: 11px;
+  color: var(--brand-dark-gray);
+  opacity: 0.8;
+}
+
+@media (max-width: 640px) {
+  .filebar {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .filebar-actions {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .filebar-btn {
+    flex: 1;
+  }
+}
+
+.filebar-hint strong {
+  color: var(--brand-navy);
+  font-weight: 600;
+}

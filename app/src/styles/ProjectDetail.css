@@ -1,0 +1,683 @@
+.project-detail {
+  padding: 28px;
+  background: var(--brand-white);
+  border-left: 4px solid var(--brand-blue);
+  border-radius: 4px;
+  box-shadow: var(--shadow-light);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.project-detail-error {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--brand-dark-gray);
+}
+
+.project-detail-error h2 {
+  color: var(--brand-navy);
+  margin: 0 0 20px 0;
+}
+
+.project-detail-error button {
+  background: linear-gradient(135deg, var(--brand-blue), #35518F);
+  color: var(--brand-white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* flex-wrap, weil Titel plus vier Abzeichen (Fassung, Status, Belegnummer, PO)
+   auf schmalen Fenstern sonst ueber den Rand laufen statt umzubrechen. */
+.project-detail-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--brand-medium-gray);
+}
+
+.project-detail-back {
+  background: var(--brand-light-gray);
+  color: var(--brand-navy);
+  border: 1px solid var(--brand-medium-gray);
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.project-detail-back:hover {
+  background: var(--brand-medium-gray);
+  color: var(--brand-white);
+}
+
+.project-detail-title {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.project-detail-title h2 {
+  color: var(--brand-navy);
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.project-detail-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Belegnummer als Kennung, nicht als PO-Auszeichnung: gedeckt und dimensions-
+   schrift, damit sie sich vom azurblau umrandeten PO-Abzeichen unterscheidet. */
+.project-detail-docnumber {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  background: var(--brand-light-gray);
+  color: var(--brand-dark-gray);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.project-detail-version {
+  background: var(--brand-light-gray);
+  color: var(--brand-navy);
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.project-detail-status {
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.project-detail-status.locked {
+  background: #d4edda;
+  color: #155724;
+}
+
+.project-detail-status.draft {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.project-detail-actions-header {
+  display: flex;
+  gap: 12px;
+}
+
+.project-detail-button-secondary,
+.project-detail-button-success {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.project-detail-button-secondary {
+  background: var(--brand-light-gray);
+  color: var(--brand-navy);
+  border: 1px solid var(--brand-medium-gray);
+}
+
+.project-detail-button-secondary:hover {
+  background: var(--brand-medium-gray);
+  color: var(--brand-white);
+}
+
+.project-detail-button-success {
+  background: #28a745;
+  color: var(--brand-white);
+}
+
+.project-detail-button-success:hover {
+  background: #218838;
+  box-shadow: var(--shadow-medium);
+}
+
+.project-detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1;
+}
+
+.project-detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.project-detail-section h3 {
+  color: var(--brand-navy);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--brand-blue);
+}
+
+.project-detail-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  background: var(--brand-light-gray);
+  padding: 16px;
+  border-radius: 4px;
+}
+
+.project-detail-overview-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.project-detail-overview-item .label {
+  color: var(--brand-dark-gray);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.project-detail-overview-item .value {
+  color: var(--brand-navy);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.project-detail-table-wrapper {
+  overflow-x: auto;
+  border-radius: 4px;
+  box-shadow: var(--shadow-light);
+}
+
+.project-detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--brand-white);
+}
+
+.project-detail-table thead {
+  background: linear-gradient(135deg, var(--brand-navy), #35518F);
+  color: var(--brand-white);
+}
+
+.project-detail-table th {
+  padding: 14px 12px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.project-detail-table tbody tr {
+  border-bottom: 1px solid var(--brand-light-gray);
+  transition: background-color 0.2s ease;
+}
+
+.project-detail-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.project-detail-table td {
+  padding: 12px;
+  font-size: 13px;
+  color: var(--brand-navy);
+}
+
+.project-detail-table .text-right {
+  text-align: right;
+}
+
+.project-detail-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.project-detail-badge.active {
+  background: #d4edda;
+  color: #155724;
+}
+
+.project-detail-badge.inactive {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.project-detail-hint {
+  margin: 0 0 12px 0;
+  padding: 10px 12px;
+  background: #e7f3ff;
+  border-left: 3px solid var(--brand-blue);
+  color: var(--brand-navy);
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+.project-detail-chargeable-toggle {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.project-detail-chargeable-toggle:hover {
+  background: var(--brand-light-gray);
+  transform: scale(1.1);
+}
+
+.project-detail-footer {
+  display: flex;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--brand-medium-gray);
+}
+
+.project-detail-footer button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 768px) {
+  .project-detail {
+    padding: 16px;
+  }
+
+  .project-detail-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .project-detail-title {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-detail-title h2 {
+    font-size: 20px;
+  }
+
+  .project-detail-overview {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-detail-table {
+    font-size: 12px;
+  }
+
+  .project-detail-table th,
+  .project-detail-table td {
+    padding: 8px 6px;
+  }
+
+  .project-detail-footer {
+    flex-direction: column;
+  }
+
+  .project-detail-footer button {
+    width: 100%;
+  }
+}
+
+/* ===== Purchase Order Badge ===== */
+.project-detail-po {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: var(--brand-blue-lightest);
+  color: var(--brand-navy);
+  border: 1px solid var(--brand-blue);
+  white-space: nowrap;
+}
+
+.project-detail-po.missing {
+  background-color: #FFF3E0;
+  color: #E65100;
+  border-color: #F57C00;
+}
+
+/* ===== Hinweise zu fehlenden Stammdaten ===== */
+.project-detail-warning {
+  background-color: #FFF3E0;
+  border-left: 4px solid #F57C00;
+  padding: 12px 16px;
+  border-radius: 4px;
+  color: #E65100;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.project-detail-warning strong {
+  font-weight: 600;
+}
+
+/* ===== Kennzeichnung offener Rollen ===== */
+.project-detail-role-tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  background-color: var(--brand-blue-lightest);
+  color: var(--brand-blue);
+  border: 1px solid var(--brand-blue);
+  vertical-align: middle;
+}
+
+.project-detail-role-tag-open {
+  background-color: #FDECEA;
+  color: var(--brand-red);
+  border-color: var(--brand-red);
+}
+
+.project-detail-table tr.row-missing-rate {
+  background-color: #FFF8F0;
+}
+
+/* Aktion direkt im Warnhinweis - der Nutzer soll nicht suchen muessen */
+.project-detail-inline-action {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 5px 12px;
+  border-radius: 4px;
+  border: 1px solid #E65100;
+  background-color: var(--brand-white);
+  color: #E65100;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.project-detail-inline-action:hover {
+  background-color: #E65100;
+  color: var(--brand-white);
+}
+
+.project-detail-inline-action:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+/* Summenzeile der nachrichtlichen Aufstellung */
+.project-detail-total-row {
+  border-top: 2px solid var(--brand-navy);
+  font-weight: 600;
+  background-color: var(--brand-light-gray);
+}
+
+/* ===== Verlauf der Fassungen ===== */
+.pd-revisions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pd-revision {
+  background-color: var(--brand-white);
+  border: 1px solid var(--brand-medium-gray);
+  border-left: 3px solid var(--brand-blue);
+  border-radius: 5px;
+  padding: 14px 16px;
+}
+
+.pd-revision-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pd-rev-badge {
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: var(--brand-navy);
+  color: var(--brand-white);
+  white-space: nowrap;
+}
+
+/* Die laufende, noch nicht abgeschlossene Fassung */
+.pd-rev-badge.current {
+  background-color: #F57C00;
+}
+
+.pd-rev-date {
+  font-size: 12px;
+  color: var(--brand-dark-gray);
+}
+
+.pd-rev-betrag {
+  font-weight: 600;
+  color: var(--brand-navy);
+  font-variant-numeric: tabular-nums;
+  margin-left: auto;
+}
+
+/* Betragsunterschied zur Vorfassung - Grundlage einer Gutschrift */
+.pd-rev-delta {
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.pd-rev-delta.minus {
+  background-color: #FEE5E5;
+  color: var(--brand-red);
+}
+
+.pd-rev-delta.plus {
+  background-color: #E5F9E5;
+  color: #1B5E20;
+}
+
+.pd-rev-print {
+  padding: 5px 11px;
+  border-radius: 4px;
+  border: 1px solid var(--brand-blue);
+  background-color: var(--brand-blue-lightest);
+  color: var(--brand-blue);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.pd-rev-print:hover {
+  background-color: var(--brand-blue);
+  color: var(--brand-white);
+}
+
+.pd-rev-print:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+.pd-revision-reason {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: var(--brand-navy);
+  line-height: 1.5;
+}
+
+
+
+/* Laufende Korrektur, noch nicht abgeschlossen */
+.project-detail-current-correction {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background-color: #FFF3E0;
+  border-left: 3px solid #F57C00;
+  border-radius: 5px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.project-detail-current-correction strong {
+  color: #E65100;
+  font-size: 13px;
+}
+
+.project-detail-current-correction p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--brand-navy);
+  line-height: 1.5;
+}
+
+/* ===== Korrektur-Dialog ===== */
+.pd-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(27, 42, 74, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.pd-modal {
+  background-color: var(--brand-white);
+  border-radius: 8px;
+  padding: 26px;
+  box-shadow: 0 10px 40px rgba(27, 42, 74, 0.3);
+  max-width: 520px;
+  width: 100%;
+}
+
+.pd-modal h3 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.pd-modal-lead {
+  margin: 0 0 18px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--brand-dark-gray);
+}
+
+.pd-form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--brand-navy);
+}
+
+.pd-form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid var(--brand-medium-gray);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--brand-navy);
+  resize: vertical;
+}
+
+.pd-form-group textarea:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  background-color: var(--brand-blue-lightest);
+}
+
+.pd-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.pd-modal-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===== Rechnungskorrektur ===== */
+.pd-correction {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--brand-medium-gray);
+}
+
+.pd-correction-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--brand-dark-gray);
+  margin-bottom: 8px;
+}
+
+.pd-correction-table {
+  font-size: 13px;
+}
+
+.pd-correction-table td,
+.pd-correction-table th {
+  padding: 7px 10px;
+}
+
+/* Vorzeichen farblich fassen - Minus ist eine Gutschrift */
+.pd-minus {
+  color: var(--brand-red);
+}
+
+.pd-plus {
+  color: #1B7F4B;
+}
+
+.project-detail-table .text-right {
+  font-variant-numeric: tabular-nums;
+}

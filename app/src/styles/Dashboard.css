@@ -1,0 +1,565 @@
+/*
+ * Dashboard.
+ *
+ * Farbwahl nach Aufgabe, nicht nach Geschmack: Umsatz traegt die Markenfarbe,
+ * nicht fakturierbare Zeit einen bewusst chromaarmen Ton - "kein Geld" soll man
+ * sehen, bevor man die Einheit liest. Beide Toene sind gegen die CVD-Schwellen
+ * geprueft (deutlicher Abstand bei Deuteranopie und Normalsicht, Kontrast >= 3:1).
+ *
+ * Statusfarben sind reserviert und erscheinen nie als Datenreihe.
+ */
+:root {
+  --viz-data: #2563EB;         /* Umsatz - Markenfarbe */
+  --viz-data-soft: #E1F1FA;
+  --viz-muted: #4A617D;        /* nicht fakturierbar - chromaarm mit Absicht */
+  --viz-muted-soft: #E7EAEF;
+  --viz-warn: #B26A00;
+  --viz-warn-soft: #FDF3E3;
+
+  --viz-surface: #FFFFFF;
+  --viz-ground: #F4F6F9;
+  --viz-ink: #10293F;
+  --viz-ink-muted: #5A6E80;
+  /* Auf 4.5:1 gebracht: #8497A6 erreichte nur 3.02:1 und trug damit die gesamte
+     sekundäre Ebene - Kachelbeschriftungen, Panel-Untertitel und die
+     Achsenbeschriftung des Verlaufs, durchweg bei 11-12px. #64788C schafft
+     4.56:1 und bleibt sichtbar heller als --viz-ink-muted. */
+  --viz-ink-faint: #64788C;
+  --viz-rule: #E2E8EE;
+}
+
+/*
+ * Kein eigenes Padding, kein eigener Grund, keine Mindesthöhe.
+ *
+ * Das Dashboard sitzt in .app-main, das bereits 32px Innenabstand hat und selbst
+ * scrollt. Eigene 28px ergaben 60px Einzug - nur in diesem Reiter. Und
+ * min-height: 100vh in einem Container, der nach Kopf, Navigation, Dateileiste
+ * und Fußzeile rund 245px kleiner als der Bildschirm ist, erzwang immer einen
+ * Bildlauf, selbst bei leerem Dashboard.
+ *
+ * --viz-ground bleibt als gedeckter Ton für Balkenspuren und Zeilen-Hover
+ * innerhalb der weißen Panels erhalten.
+ */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---------- Kopf ---------- */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--brand-navy);
+}
+
+.dashboard-subtitle {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: var(--viz-ink-muted);
+}
+
+.dashboard-month-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dashboard-month-selector label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--viz-ink-faint);
+}
+
+.dashboard-month-selector select {
+  padding: 9px 14px;
+  border: 1px solid var(--viz-rule);
+  border-radius: 6px;
+  background-color: var(--viz-surface);
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--viz-ink);
+  cursor: pointer;
+  min-width: 190px;
+}
+
+.dashboard-month-selector select:focus-visible {
+  outline: 2px solid var(--viz-data);
+  outline-offset: 2px;
+}
+
+.dashboard-report-button {
+  padding: 9px 16px;
+  border: 1px solid var(--brand-navy, #1B2A4A);
+  border-radius: 6px;
+  background-color: var(--brand-navy, #1B2A4A);
+  color: #fff;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dashboard-report-button:hover {
+  background-color: var(--brand-blue, #2563eb);
+  border-color: var(--brand-blue, #2563eb);
+}
+
+.dashboard-report-button:focus-visible {
+  outline: 2px solid var(--viz-data);
+  outline-offset: 2px;
+}
+
+/* ---------- Hinweise ---------- */
+.dashboard-warning {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background-color: var(--viz-warn-soft);
+  border: 1px solid #F0DCBC;
+  border-left: 3px solid var(--viz-warn);
+  border-radius: 6px;
+  padding: 12px 16px;
+  color: #7A4900;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.dashboard-warning strong { font-weight: 600; }
+
+.dashboard-empty {
+  background-color: var(--viz-surface);
+  border: 1px solid var(--viz-rule);
+  border-radius: 8px;
+  padding: 48px;
+  text-align: center;
+  color: var(--viz-ink-muted);
+}
+
+/* ---------- Kennzahlen ---------- */
+.dashboard-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.stat {
+  background-color: var(--viz-surface);
+  border: 1px solid var(--viz-rule);
+  border-radius: 8px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Die Leitzahl bekommt als einzige einen farbigen Wert */
+.stat-accent { border-top: 2px solid var(--viz-data); }
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--viz-ink-faint);
+}
+
+.stat-value {
+  font-size: 27px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--viz-ink);
+}
+
+.stat-accent .stat-value { color: var(--viz-data); }
+
+.stat-note {
+  font-size: 12px;
+  color: var(--viz-ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Anteilsbalken - schneller erfassbar als die Prozentzahl allein */
+.stat-meter {
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--viz-muted-soft);
+  overflow: hidden;
+  margin: 4px 0 2px;
+}
+
+.stat-meter-fill {
+  height: 100%;
+  border-radius: 2px;
+  background-color: var(--viz-data);
+}
+
+/* ---------- Panels ---------- */
+.dashboard-charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.panel {
+  background-color: var(--viz-surface);
+  border: 1px solid var(--viz-rule);
+  border-radius: 8px;
+  padding: 18px 20px 20px;
+}
+
+.panel-wide { grid-column: 1 / -1; }
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.panel-head h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--viz-ink);
+}
+
+.panel-note {
+  font-size: 12px;
+  color: var(--viz-ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.sub-head {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--viz-ink-faint);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+/* ---------- Balken ---------- */
+.bars {
+  display: flex;
+  flex-direction: column;
+  /* 2px Flaechenabstand zwischen benachbarten Balken */
+  gap: 9px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: minmax(90px, 150px) 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.bar-label {
+  font-size: 13px;
+  color: var(--viz-ink);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.bar-sublabel {
+  display: block;
+  font-size: 11px;
+  color: var(--viz-ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.bar-track {
+  height: 14px;
+  background-color: var(--viz-ground);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* Duenne Marke, abgerundetes Datenende, am Nullpunkt verankert */
+.bar-fill {
+  height: 100%;
+  background-color: var(--viz-data);
+  border-radius: 0 4px 4px 0;
+  transition: width 0.25s ease;
+}
+
+.bar-fill-muted { background-color: var(--viz-muted); }
+
+.bar-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--viz-ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-align: right;
+  min-width: 78px;
+}
+
+.bar-row:hover .bar-track { background-color: var(--viz-data-soft); }
+.bar-row:hover .bar-fill-muted ~ * { color: inherit; }
+
+.chart-footnote {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: var(--viz-ink-faint);
+}
+
+/* ---------- Verlauf ---------- */
+.trend { width: 100%; overflow-x: auto; }
+
+.trend svg {
+  width: 100%;
+  min-width: 460px;
+  height: auto;
+  display: block;
+}
+
+.trend-grid {
+  stroke: var(--viz-rule);
+  stroke-width: 1;
+}
+
+.trend-tick,
+.trend-xlabel {
+  font-size: 11px;
+  fill: var(--viz-ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.trend-area { fill: var(--viz-data-soft); }
+
+/* 2px Linie, Marker >= 8px - so bleibt der Verlauf lesbar */
+.trend-line {
+  fill: none;
+  stroke: var(--viz-data);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.trend-dot {
+  fill: var(--viz-data);
+  /* Ring in Flaechenfarbe, damit sich Punkte nicht mit der Linie vermischen */
+  stroke: var(--viz-surface);
+  stroke-width: 2;
+}
+
+.trend-endlabel {
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--viz-data);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Tabelle ---------- */
+.dashboard-table-wrapper { overflow-x: auto; }
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.dashboard-table th {
+  padding: 9px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--viz-ink-faint);
+  border-bottom: 1px solid var(--viz-rule);
+  white-space: nowrap;
+}
+
+.dashboard-table th.numeric,
+.dashboard-table td.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.dashboard-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--viz-rule);
+  color: var(--viz-ink);
+}
+
+.dashboard-table td.strong { font-weight: 600; }
+
+.dashboard-table tbody tr:hover { background-color: var(--viz-ground); }
+
+.dashboard-missing {
+  color: var(--viz-warn);
+  font-style: italic;
+  font-size: 12px;
+}
+
+.dashboard-table-total {
+  font-weight: 600;
+  background-color: var(--viz-ground);
+}
+
+.dashboard-table-total td {
+  border-top: 2px solid var(--brand-navy);
+  border-bottom: none;
+  color: var(--brand-navy);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar-fill { transition: none; }
+}
+
+@media (max-width: 640px) {
+  .dashboard { padding: 16px; }
+  .bar-row { grid-template-columns: 1fr auto; }
+  .bar-track { grid-column: 1 / -1; }
+}
+
+/* ---------- Umsatz nach Bundle ---------- */
+/*
+ * Eine Karte je Bundle, drei bis vier nebeneinander. Jede zeigt die groessten
+ * Beitraege einzeln und den Rest gebuendelt - die vollstaendige Liste steht in
+ * der Tabelle darunter.
+ */
+.bundle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
+  gap: 14px;
+}
+
+.bundle-card {
+  border: 1px solid var(--viz-rule);
+  border-radius: 7px;
+  padding: 14px 15px 12px;
+  min-width: 0;
+}
+
+.bundle-card-head {
+  border-bottom: 1px solid var(--viz-rule);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.bundle-card-head h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--viz-ink);
+  /* Lange Bundle-Namen duerfen die Karte nicht sprengen */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bundle-card-total {
+  margin-top: 3px;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--viz-data);
+  font-variant-numeric: tabular-nums;
+}
+
+.bundle-card-meta {
+  font-size: 11px;
+  color: var(--viz-ink-faint);
+}
+
+/* Eine Zeile je Projekt - alle bleiben sichtbar, ohne die Karte zu strecken */
+.share-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.share-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.share-head,
+.share-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.share-head { justify-content: space-between; align-items: baseline; }
+
+.share-name {
+  font-size: 12px;
+  color: var(--viz-ink);
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.share-pct {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--viz-ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Auf 100 % skaliert, nicht auf den groessten Wert - sonst saehe ein
+   17-%-Projekt aus wie ein voller Balken und der Vergleich zwischen
+   Karten waere falsch. */
+.share-track {
+  display: block;
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--viz-ground);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.share-fill {
+  display: block;
+  height: 100%;
+  border-radius: 0 2px 2px 0;
+  background-color: var(--viz-data);
+}
+
+.share-eur {
+  font-size: 11px;
+  color: var(--viz-ink-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  min-width: 66px;
+  text-align: right;
+}
+
+@media (max-width: 700px) {
+  .bundle-grid { grid-template-columns: 1fr; }
+}

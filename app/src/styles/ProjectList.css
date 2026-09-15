@@ -1,0 +1,340 @@
+.project-list {
+  padding: 28px;
+  background: var(--brand-white);
+  border-left: 4px solid var(--brand-blue);
+  border-radius: 4px;
+  box-shadow: var(--shadow-light);
+}
+
+.project-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+.project-list-header h2 {
+  color: var(--brand-navy);
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.project-list-new-button {
+  background: linear-gradient(135deg, var(--brand-blue), #35518F);
+  color: var(--brand-white);
+  border: none;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.project-list-new-button:hover {
+  background: linear-gradient(135deg, #35518F, #1B2A4A);
+  box-shadow: var(--shadow-medium);
+}
+
+.project-list-new-form {
+  background: var(--brand-light-gray);
+  border: 1px solid var(--brand-medium-gray);
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.project-list-new-form h3 {
+  color: var(--brand-navy);
+  margin: 0 0 16px 0;
+  font-size: 16px;
+}
+
+.project-list-form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.project-list-form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project-list-form-group label {
+  color: var(--brand-navy);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.project-list-form-group select,
+.project-list-form-group input {
+  padding: 8px 12px;
+  border: 1px solid var(--brand-blue);
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--brand-navy);
+  background: var(--brand-white);
+}
+
+.project-list-form-group select:focus,
+.project-list-form-group input:focus {
+  outline: none;
+  border-color: var(--brand-navy);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.project-list-form-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.project-list-button-primary,
+.project-list-button-secondary,
+.project-list-button-success {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.project-list-button-primary {
+  background: linear-gradient(135deg, var(--brand-blue), #35518F);
+  color: var(--brand-white);
+}
+
+.project-list-button-primary:hover {
+  background: linear-gradient(135deg, #35518F, #1B2A4A);
+  box-shadow: var(--shadow-medium);
+}
+
+.project-list-button-secondary {
+  background: var(--brand-light-gray);
+  color: var(--brand-navy);
+  border: 1px solid var(--brand-medium-gray);
+}
+
+.project-list-button-secondary:hover {
+  background: var(--brand-medium-gray);
+  color: var(--brand-white);
+}
+
+.project-list-button-success {
+  background: #28a745;
+  color: var(--brand-white);
+}
+
+.project-list-button-success:hover {
+  background: #218838;
+  box-shadow: var(--shadow-medium);
+}
+
+.project-list-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--brand-dark-gray);
+}
+
+.project-list-empty p {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+}
+
+.project-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.project-list-card {
+  background: var(--brand-white);
+  border: 1px solid var(--brand-medium-gray);
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: var(--shadow-light);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  /* Grid-Elemente haben min-width: auto und koennen ihre Spalte sprengen,
+     wenn ein Kind breiter als die Spur ist. */
+  min-width: 0;
+}
+
+.project-list-card:hover {
+  box-shadow: var(--shadow-medium);
+}
+
+.project-list-card.locked {
+  border-left: 4px solid #28a745;
+}
+
+.project-list-card.draft {
+  border-left: 4px solid var(--brand-amber);
+  background: #fffbf0;
+}
+
+/*
+ * Titel oben, Abzeichen darunter - nicht mehr nebeneinander.
+ *
+ * Nebeneinander ging auf, solange nur "v1" und der Status danebenstanden. Mit der
+ * Belegnummer (etwa 2026-08-ATLAS-LN) passt die Zeile nicht mehr in eine 350px
+ * breite Kachel, und ohne flex-wrap lief sie sichtbar darueber hinaus statt
+ * umzubrechen.
+ */
+.project-list-card-header {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.project-list-card-header h3 {
+  color: var(--brand-navy);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  /* Lange Projektnamen brechen um, statt die Kachel zu sprengen */
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.project-list-badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+/*
+ * Belegnummer: eine Kennung, keine Auszeichnung - gedeckte Flaeche wie die
+ * Fassungsnummer, aber dimensionsschrift. Umbrechen darf die Zeile, nicht die
+ * Nummer selbst.
+ */
+.project-list-docnumber {
+  background: var(--brand-light-gray);
+  color: var(--brand-dark-gray);
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.project-list-version {
+  background: var(--brand-light-gray);
+  color: var(--brand-navy);
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.project-list-status {
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.project-list-status.locked {
+  background: #d4edda;
+  color: #155724;
+}
+
+.project-list-status.draft {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.project-list-card-info {
+  flex: 1;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--brand-light-gray);
+}
+
+.project-list-info-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.project-list-label {
+  color: var(--brand-dark-gray);
+  font-weight: 500;
+}
+
+.project-list-value {
+  color: var(--brand-navy);
+  font-weight: 600;
+}
+
+.project-list-changelog {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--brand-light-gray);
+}
+
+.project-list-changelog .project-list-label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.project-list-changelog p {
+  margin: 0;
+  color: var(--brand-navy);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.project-list-card-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.project-list-card-actions button {
+  flex: 1;
+  min-width: 120px;
+}
+
+@media (max-width: 768px) {
+  .project-list {
+    padding: 16px;
+  }
+
+  .project-list-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .project-list-new-button {
+    width: 100%;
+  }
+
+  .project-list-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-list-form-row {
+    flex-direction: column;
+  }
+
+  .project-list-card-actions {
+    flex-direction: column;
+  }
+
+  .project-list-card-actions button {
+    min-width: auto;
+  }
+}

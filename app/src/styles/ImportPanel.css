@@ -1,0 +1,426 @@
+/* ImportPanel Component */
+
+.import-panel {
+  background-color: var(--brand-white);
+  padding: 28px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-light);
+  border-left: 4px solid var(--brand-blue);
+}
+
+.import-panel h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.import-description {
+  margin: 0 0 24px;
+  color: var(--brand-dark-gray);
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+/* Upload Area */
+.import-upload-area {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.import-file-input {
+  display: none;
+}
+
+.import-file-input:disabled + .import-upload-button {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.import-upload-button {
+  display: inline-block;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-blue-shade-1) 100%);
+  color: var(--brand-white);
+  border: 2px solid var(--brand-blue);
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  box-shadow: var(--shadow-light);
+}
+
+.import-upload-button:hover {
+  background: linear-gradient(135deg, var(--brand-blue-shade-1) 0%, var(--brand-navy-shade-1) 100%);
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+.import-upload-button:active {
+  transform: translateY(0);
+}
+
+/* Alerts */
+.import-alert {
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  border-left: 4px solid;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.import-alert strong {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.import-alert-error {
+  background-color: #FEE5E5;
+  border-left-color: var(--brand-red);
+  color: #8B0000;
+}
+
+.import-alert-success {
+  background-color: #E8F5E9;
+  border-left-color: #4CAF50;
+  color: #1B5E20;
+}
+
+/* Messages */
+.import-warnings,
+.import-errors {
+  margin-bottom: 16px;
+  padding: 16px;
+  background-color: var(--brand-blue-lightest);
+  border-radius: 6px;
+  border-left: 4px solid var(--brand-amber);
+}
+
+.import-errors {
+  border-left-color: var(--brand-red);
+  background-color: #FFF5F5;
+}
+
+.import-warnings h3,
+.import-errors h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.import-message-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.import-message-list li {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+  padding: 8px;
+  background-color: var(--brand-white);
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  border-left: 3px solid var(--brand-blue-shade-2);
+}
+
+.import-message-list li:last-child {
+  margin-bottom: 0;
+}
+
+.import-message-row {
+  flex-shrink: 0;
+  font-weight: 600;
+  color: var(--brand-navy);
+  min-width: 50px;
+  font-size: 12px;
+}
+
+.import-message-text {
+  flex: 1;
+  color: var(--brand-dark-gray);
+}
+
+/* Actions */
+.import-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.import-reset-button {
+  padding: 10px 20px;
+  background-color: var(--brand-light-gray);
+  border: 2px solid var(--brand-medium-gray);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--brand-navy);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.import-reset-button:hover {
+  background-color: var(--brand-blue-lightest);
+  border-color: var(--brand-blue);
+  color: var(--brand-blue);
+}
+
+.import-reset-button:active {
+  transform: translateY(1px);
+}
+
+/* Bundle Section */
+.import-bundle-section {
+  margin-bottom: 28px;
+  padding: 16px;
+  background-color: var(--brand-light-gray);
+  border-radius: 6px;
+  border-left: 4px solid var(--brand-blue);
+}
+
+.import-bundle-section h3 {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.import-bundle-select {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.import-bundle-select label {
+  font-weight: 600;
+  color: var(--brand-navy);
+  font-size: 14px;
+}
+
+.import-bundle-select select {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--brand-medium-gray);
+  border-radius: 4px;
+  background-color: var(--brand-white);
+  color: var(--brand-navy);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.import-bundle-select select:hover {
+  border-color: var(--brand-blue);
+}
+
+.import-bundle-select select:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.import-bundle-select select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.import-button-secondary {
+  padding: 10px 16px;
+  background-color: var(--brand-white);
+  border: 2px solid var(--brand-blue);
+  border-radius: 4px;
+  color: var(--brand-blue);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.import-button-secondary:hover:not(:disabled) {
+  background-color: var(--brand-blue);
+  color: var(--brand-white);
+}
+
+.import-button-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.import-button-primary {
+  padding: 10px 16px;
+  background-color: var(--brand-blue);
+  border: none;
+  border-radius: 4px;
+  color: var(--brand-white);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.import-button-primary:hover:not(:disabled) {
+  background-color: #35518F;
+  box-shadow: var(--shadow-light);
+}
+
+.import-button-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.import-bundle-form {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.import-bundle-form input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--brand-medium-gray);
+  border-radius: 4px;
+  background-color: var(--brand-white);
+  color: var(--brand-navy);
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.import-bundle-form input:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.import-bundle-form input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Import Monat Section */
+.import-monat-section {
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: var(--brand-light-gray);
+  border-radius: 6px;
+  border-left: 4px solid var(--brand-blue);
+}
+
+.import-monat-section h3 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.import-monat-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--brand-medium-gray);
+  border-radius: 4px;
+  background-color: var(--brand-white);
+  color: var(--brand-navy);
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.import-monat-input:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.import-monat-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.import-monat-selects {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.import-monat-select {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--brand-medium-gray);
+  border-radius: 4px;
+  background-color: var(--brand-white);
+  color: var(--brand-navy);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.import-monat-select:hover {
+  border-color: var(--brand-blue);
+}
+
+.import-monat-select:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.import-monat-select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Upload Area Title */
+.import-upload-area h3 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .import-panel {
+    padding: 16px;
+  }
+
+  .import-panel h2 {
+    font-size: 20px;
+  }
+
+  .import-upload-button {
+    padding: 12px 24px;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .import-message-list {
+    max-height: 150px;
+  }
+}
+
+/* Hinweis auf uebersprungene Dubletten - kein Fehler, aber erklaerungsbeduerftig */
+.import-alert-duplicate {
+  background-color: #E8F1FA;
+  border-left: 4px solid var(--brand-blue);
+  color: var(--brand-navy);
+}
+
+.import-alert-duplicate ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.import-alert-duplicate li {
+  margin: 4px 0;
+}

@@ -1,0 +1,401 @@
+.pram-container {
+  background-color: var(--brand-white);
+  padding: 28px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-light);
+  border-left: 4px solid var(--brand-blue);
+}
+
+.pram-container h2 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.pram-description {
+  margin: 0 0 24px 0;
+  color: var(--brand-dark-gray);
+  font-size: 14px;
+}
+
+.pram-project-selector {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: var(--brand-light-gray);
+  border-radius: 6px;
+}
+
+.pram-project-selector label {
+  font-weight: 600;
+  color: var(--brand-navy);
+  min-width: 120px;
+}
+
+.pram-project-selector select {
+  flex: 1;
+  padding: 10px 12px;
+  border: 2px solid var(--brand-medium-gray);
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--brand-navy);
+}
+
+.pram-project-selector select:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  background-color: var(--brand-blue-lightest);
+}
+
+.pram-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+
+.pram-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+/* Buttons */
+.pram-btn-primary {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-blue-shade-1) 100%);
+  color: var(--brand-white);
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-light);
+  white-space: nowrap;
+}
+
+.pram-btn-primary:hover {
+  background: linear-gradient(135deg, var(--brand-blue-shade-1) 0%, var(--brand-navy-shade-1) 100%);
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+.pram-btn-secondary {
+  padding: 10px 18px;
+  background-color: var(--brand-light-gray);
+  color: var(--brand-navy);
+  border: 2px solid var(--brand-medium-gray);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pram-btn-secondary:hover {
+  background-color: var(--brand-blue-lightest);
+  border-color: var(--brand-blue);
+  color: var(--brand-blue);
+}
+
+.pram-btn-edit {
+  padding: 6px 12px;
+  background-color: var(--brand-blue-lightest);
+  color: var(--brand-blue);
+  border: 1px solid var(--brand-blue);
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.pram-btn-edit:hover {
+  background-color: var(--brand-blue);
+  color: var(--brand-white);
+}
+
+.pram-btn-delete {
+  padding: 6px 12px;
+  background-color: #FEE5E5;
+  color: var(--brand-red);
+  border: 1px solid var(--brand-red);
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.pram-btn-delete:hover {
+  background-color: var(--brand-red);
+  color: var(--brand-white);
+}
+
+/* Empty State */
+.pram-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--brand-dark-gray);
+  background-color: var(--brand-light-gray);
+  border-radius: 6px;
+}
+
+.pram-empty p {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Table */
+.pram-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.pram-table thead {
+  background-color: var(--brand-blue-lightest);
+  border-bottom: 2px solid var(--brand-blue);
+}
+
+.pram-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.pram-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--brand-medium-gray);
+  color: var(--brand-dark-gray);
+}
+
+.pram-table tbody tr:hover {
+  background-color: var(--brand-light-gray);
+}
+
+.pram-actions {
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* Modal */
+.pram-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(27, 42, 74, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.pram-modal {
+  background-color: var(--brand-white);
+  border-radius: 8px;
+  padding: 28px;
+  box-shadow: 0 10px 40px rgba(27, 42, 74, 0.3);
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.pram-modal h3 {
+  margin: 0 0 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.pram-form-group {
+  margin-bottom: 16px;
+}
+
+.pram-form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--brand-navy);
+  font-size: 14px;
+}
+
+.pram-form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid var(--brand-medium-gray);
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--brand-navy);
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.pram-form-group select:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  background-color: var(--brand-blue-lightest);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.pram-modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  justify-content: flex-end;
+}
+
+.pram-modal-actions button {
+  min-width: 120px;
+}
+
+@media (max-width: 768px) {
+  .pram-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pram-btn-primary {
+    width: 100%;
+  }
+
+  .pram-project-selector {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pram-project-selector select {
+    width: 100%;
+  }
+}
+
+/* ===== Hinweise auf fehlende Voraussetzungen ===== */
+.pram-warning {
+  background-color: #FFF3E0;
+  border-left: 4px solid #F57C00;
+  padding: 12px 16px;
+  border-radius: 4px;
+  color: #E65100;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.pram-warning strong {
+  font-weight: 600;
+}
+
+.pram-hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--brand-dark-gray);
+  line-height: 1.5;
+}
+
+.pram-hint-warning {
+  color: #E65100;
+}
+
+.pram-muted {
+  color: var(--brand-dark-gray);
+  opacity: 0.75;
+  font-size: 13px;
+}
+
+/* PO-Nummer neben dem Projektnamen */
+.pram-po {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  background-color: var(--brand-blue-lightest);
+  color: var(--brand-navy);
+  border: 1px solid var(--brand-blue);
+  vertical-align: middle;
+}
+
+.pram-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pram-btn-primary:disabled:hover {
+  transform: none;
+  box-shadow: var(--shadow-light);
+}
+
+/* ===== Rate-Card-gestuetzte Auswahl ===== */
+.pram-numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Zwingt schmale Spalten (Zahl, Aktionen) auf ihre Inhaltsbreite, statt dass
+   table-layout:auto den freien Platz gleichmäßig verteilt - bei kurzen Rollen-
+   oder Namenstexten klaffte sonst eine Lücke zwischen Spaltenkopf und Wert. */
+.pram-col-fit {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* Standort unter der Rolle - er entscheidet ueber den Satz */
+.pram-standort {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--brand-dark-gray);
+}
+
+.pram-no-rate {
+  color: #E65100;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.pram-field-hint {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--brand-dark-gray);
+}
+
+/* Zeigt den Satz, bevor gespeichert wird */
+.pram-preview {
+  margin-top: 4px;
+  padding: 12px 14px;
+  border-radius: 5px;
+  background-color: var(--brand-blue-lightest);
+  border-left: 3px solid var(--brand-blue);
+  color: var(--brand-navy);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.pram-preview strong {
+  font-weight: 600;
+}
+
+.pram-form-group optgroup {
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.pram-form-group option {
+  font-weight: 400;
+}

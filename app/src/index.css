@@ -1,0 +1,69 @@
+/*
+ * Globale Grundlagen.
+ *
+ * Die Farbtokens stehen ausschliesslich in App.css - dort ist das Corporate
+ * Design gesetzt. Frueher definierte diese Datei ein zweites
+ * :root mit denselben Namen, aber abweichenden Werten; da sie spaeter gebuendelt
+ * wird, gewann sie bei gleicher Spezifitaet und die Anwendung lief nicht im
+ * Markenschema (aktiver Reiter neongelb #fff200 statt Amber #F2A03D). Deshalb
+ * hier keine Tokens mehr - eine Quelle, nicht zwei.
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--brand-black);
+  background-color: var(--brand-light-gray);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button:focus {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: -1px;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--brand-light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand-blue);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-navy);
+}

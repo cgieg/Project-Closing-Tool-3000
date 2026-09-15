@@ -1,0 +1,229 @@
+.data-management {
+  background-color: var(--brand-white);
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-light);
+  border-left: 4px solid var(--brand-blue);
+}
+
+.data-management-header {
+  margin-bottom: 20px;
+}
+
+.data-management-header h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.data-management-header p {
+  margin: 0;
+  color: var(--brand-dark-gray);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.data-management-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.data-management-section {
+  padding: 16px;
+  background-color: var(--brand-light-gray);
+  border-radius: 6px;
+  border: 1px solid var(--brand-medium-gray);
+}
+
+.data-management-section h4 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.section-description {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--brand-dark-gray);
+  line-height: 1.5;
+}
+
+/* Export Section */
+.export-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: var(--brand-white);
+  border-radius: 4px;
+  border: 1px solid var(--brand-medium-gray);
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.stat-label {
+  color: var(--brand-dark-gray);
+  font-weight: 500;
+}
+
+.stat-value {
+  font-weight: 600;
+  color: var(--brand-blue);
+  font-size: 14px;
+}
+
+.data-export-button {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-blue-shade-1) 100%);
+  color: var(--brand-white);
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-light);
+}
+
+.data-export-button:hover {
+  background: linear-gradient(135deg, var(--brand-blue-shade-1) 0%, var(--brand-navy-shade-1) 100%);
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+.data-export-button:active {
+  transform: translateY(0);
+}
+
+/* Import Section */
+.import-options {
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: var(--brand-white);
+  border-radius: 4px;
+  border: 1px solid var(--brand-medium-gray);
+}
+
+.import-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.import-option:last-child {
+  margin-bottom: 0;
+}
+
+.import-option input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: var(--brand-blue);
+}
+
+.import-option span {
+  color: var(--brand-dark-gray);
+  user-select: none;
+}
+
+.import-file-section {
+  position: relative;
+}
+
+.data-import-input {
+  display: none;
+}
+
+.data-import-button {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--brand-white);
+  border: 2px solid var(--brand-blue);
+  border-radius: 6px;
+  color: var(--brand-blue);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.data-import-button:hover {
+  background-color: var(--brand-blue);
+  color: var(--brand-white);
+}
+
+.data-import-button:active {
+  transform: translateY(1px);
+}
+
+/* Status Messages */
+.import-status {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  border-left: 4px solid;
+  font-size: 13px;
+  animation: slideDown 0.3s ease;
+}
+
+.import-status.success {
+  background-color: #E8F5E9;
+  border-left-color: #4CAF50;
+  color: #1B5E20;
+}
+
+.import-status.error {
+  background-color: #FEE5E5;
+  border-left-color: var(--brand-red);
+  color: #8B0000;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .data-management-content {
+    grid-template-columns: 1fr;
+  }
+
+  .export-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .data-management {
+    padding: 16px;
+  }
+
+  .data-management-section {
+    padding: 12px;
+  }
+
+  .export-stats {
+    grid-template-columns: 1fr;
+  }
+}
